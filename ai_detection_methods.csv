@@ -1,0 +1,10 @@
+Detection_Method,Quantidade_Repos,AI_Score_Media,AI_Score_Min,AI_Score_Max
+Claude Co-authorship,67,5.6,3,13
+Claude Config,21,7.71,2,13
+Cursor Config,8,8.12,2,13
+Cursor Rules,4,7.25,5,11
+GitHub Copilot Co-authorship,54,5.46,3,13
+GitHub Copilot Instructions,10,7.6,2,13
+LLM Co-authorship,1,6.0,6,6
+VSCode Extensions,14,8.21,4,13
+VSCode Settings,16,6.25,2,13

@@ -1,0 +1,5 @@
+AI_Score_Group,Quantidade,Stars_Media,Stars_Mediana,Idade_Media,Idade_Mediana,Commits_Pre,Issues_Pre,MI_Pre_Media,MI_Pos_Media,MI_Change_Percent
+Baixo (0-2),8,26923.62,19242.5,9.57,9.35,210.38,474.5,66.49,61.23,-7.36
+Médio (3-5),62,26693.0,15385.5,10.46,9.5,364.79,1715.08,62.34,60.94,-1.42
+Alto (6-8),26,30594.46,20650.0,10.24,9.0,481.0,745.23,64.66,64.31,-0.16
+Muito Alto (9-13),9,42652.56,34284.0,9.12,7.9,592.33,2012.0,69.25,68.77,-0.24
