@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
@@ -7,73 +8,101 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@sgratzl/chartjs-chart-boxplot@4"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
         <h1>Análise do Impacto de IA na Estabilidade de Códigos</h1>
-        <p>Visão Geral e Respostas às Questões de Pesquisa (Metodologia GQM)</p>
+        <p>Dashboard de Resultados - Metodologia GQM</p>
+        
+        <nav class="nav-menu">
+            <button class="nav-btn active" onclick="switchTab(event, 'tab-visao')">Visão Geral</button>
+            <button class="nav-btn" onclick="switchTab(event, 'tab-rq1')">RQ1: Manutenibilidade</button>
+            <button class="nav-btn" onclick="switchTab(event, 'tab-rq2')">RQ2: Estabilidade</button>
+            <button class="nav-btn" onclick="switchTab(event, 'tab-rq3')">RQ3: Produtividade</button>
+        </nav>
     </header>
 
-    <section class="kpi-grid">
-        <div class="kpi-card">
-            <h3>Total de Repositórios</h3>
-            <div class="value" id="kpi-total">105</div>
-        </div>
-        <div class="kpi-card">
-            <h3>Estrelas (Média)</h3>
-            <div class="value" id="kpi-stars">29.045</div>
-        </div>
-        <div class="kpi-card">
-            <h3>Idade Média (Anos)</h3>
-            <div class="value" id="kpi-age">10.2</div>
-        </div>
-        <div class="kpi-card">
-            <h3>Score de IA (Média)</h3>
-            <div class="value" id="kpi-score">4.7</div>
-        </div>
-    </section>
-
-    <section class="charts-grid">
-        
-        <div class="chart-container">
-            <h2>Métodos de Detecção de IA</h2>
-            <div class="canvas-wrapper">
-                <canvas id="detectionChart"></canvas>
+    <div id="tab-visao" class="tab-content active">
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <h3>Total de Repositórios</h3>
+                <div class="value" id="kpi-total">105</div>
             </div>
-        </div>
-
-        <div class="chart-container">
-            <h2>Distribuição do Nível de IA (AI Score)</h2>
-            <div class="canvas-wrapper">
-                <canvas id="aiScoreChart"></canvas>
+            <div class="kpi-card">
+                <h3>Estrelas (Média)</h3>
+                <div class="value" id="kpi-stars">29.045</div>
             </div>
-        </div>
-
-        <div class="chart-container">
-            <h2>RQ1: Índice de Manutenibilidade (MI) Pré vs Pós-IA</h2>
-            <div class="canvas-wrapper">
-                <canvas id="rq1Chart"></canvas>
+            <div class="kpi-card">
+                <h3>Idade Média (Anos)</h3>
+                <div class="value" id="kpi-age">10.2</div>
             </div>
-        </div>
-
-        <div class="chart-container">
-            <h2>RQ2: Taxa de Commits Corretivos (Fix/Revert)</h2>
-            <div class="canvas-wrapper">
-                <canvas id="rq2Chart"></canvas>
+            <div class="kpi-card">
+                <h3>Score de IA (Média)</h3>
+                <div class="value" id="kpi-score">4.7</div>
             </div>
-        </div>
+        </section>
 
-        <div class="chart-container" style="grid-column: 1 / -1;">
-            <h2>RQ3: Tempo Médio de Resolução de Issues (MTTR em Horas)</h2>
-            <div class="canvas-wrapper">
-                <canvas id="rq3Chart"></canvas>
+        <section class="charts-grid">
+            <div class="chart-container">
+                <h2>Métodos de Detecção de IA</h2>
+                <div class="canvas-wrapper"><canvas id="detectionChart"></canvas></div>
             </div>
-        </div>
+            <div class="chart-container">
+                <h2>Distribuição do Nível de IA (AI Score)</h2>
+                <div class="canvas-wrapper"><canvas id="aiScoreChart"></canvas></div>
+            </div>
+            <div class="chart-container" style="grid-column: 1 / -1;">
+                <h2>Panorama: Maturidade vs Popularidade (Tamanho da bolha = Intensidade de IA)</h2>
+                <div class="canvas-wrapper"><canvas id="scatterChart"></canvas></div>
+            </div>
+        </section>
+    </div>
 
-    </section>
+    <div id="tab-rq1" class="tab-content">
+        <section class="charts-grid">
+            <div class="chart-container">
+                <h2>RQ1: Índice de Manutenibilidade (MI)</h2>
+                <div class="canvas-wrapper"><canvas id="rq1Chart"></canvas></div>
+            </div>
+            <div class="chart-container">
+                <h2>RQ1: Distribuição do MI (Boxplot)</h2>
+                <div class="canvas-wrapper"><canvas id="boxplotMI"></canvas></div>
+            </div>
+            <div class="chart-container" style="grid-column: 1 / -1;">
+                <h2>RQ1: Verbosidade (Linhas Alteradas por Commit)</h2>
+                <div class="canvas-wrapper"><canvas id="rq1LinesChart"></canvas></div>
+            </div>
+        </section>
+    </div>
+
+    <div id="tab-rq2" class="tab-content">
+        <section class="charts-grid">
+            <div class="chart-container" style="grid-column: 1 / -1;">
+                <h2>RQ2: Taxa de Commits Corretivos (Fix/Revert Rate)</h2>
+                <div class="canvas-wrapper"><canvas id="rq2Chart"></canvas></div>
+            </div>
+        </section>
+    </div>
+
+    <div id="tab-rq3" class="tab-content">
+        <section class="charts-grid">
+            <div class="chart-container">
+                <h2>RQ3: Tempo Médio de Resolução (MTTR em Horas)</h2>
+                <div class="canvas-wrapper"><canvas id="rq3Chart"></canvas></div>
+            </div>
+            <div class="chart-container">
+                <h2>RQ3: Dispersão do MTTR (Boxplot)</h2>
+                <div class="canvas-wrapper"><canvas id="boxplotMTTR"></canvas></div>
+            </div>
+            <div class="chart-container" style="grid-column: 1 / -1;">
+                <h2>RQ3: Taxa de Abertura de Issues (por Mês)</h2>
+                <div class="canvas-wrapper"><canvas id="rq3IssuesChart"></canvas></div>
+            </div>
+        </section>
+    </div>
 
     <script src="script.js"></script>
 </body>
