@@ -9,7 +9,7 @@ Chart.defaults.scale.grid.color = '#f1f5f9';
 // Paleta de Cores Padrão
 const corAzulPrincipal = '#3b82f6';
 const corAzulSecundario = '#94a3b8';
-const corRoxaDestaque = '#8b5cf6';
+const corAzulDestaque = '#2563eb';
 const corVermelhaAlerta = '#ef4444'; // Usada para destacar outliers e alertas
 
 
@@ -127,7 +127,7 @@ new Chart(document.getElementById('rq1LinesChart'), {
         labels: ['Baixo', 'Médio', 'Alto', 'Muito Alto'],
         datasets: [
             { label: 'Linhas por Commit (Pré)', data: [198, 629, 510, 703], backgroundColor: corAzulSecundario, borderRadius: 4 },
-            { label: 'Linhas por Commit (Pós)', data: [242, 569, 559, 1155], backgroundColor: corRoxaDestaque, borderRadius: 4 } 
+            { label: 'Linhas por Commit (Pós)', data: [242, 569, 559, 1155], backgroundColor: corAzulDestaque, borderRadius: 4 } 
         ]
     },
     options: { responsive: true, maintainAspectRatio: false }
